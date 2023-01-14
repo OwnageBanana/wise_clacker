@@ -32,13 +32,30 @@ stretch goal:
 build with how you build!
 ... follow the [RP-Hal](https://github.com/rp-rs/rp-hal) documentation to get things up and running.
 
-## Additional steps for linux
+If you are on linux, check out the next section to install the proper dependencies.
+
+```
+cargo build
+
+cargo build --release
+
+```
+
+you can also run and the built binaries will be transfered to the micro controller when in USB Mass Storage Device mode
+
+```
+cargo run
+
+cargo run --release
+```
+
+## Additional installation steps for linux
 
 the RP-HAL repo leaves out some linux specific steps and dependencies. You'll need libusbx for using the thumbv6m-non-eabi, proberun and elf2uf2-rs to have cargo automatically transfer the built code to the rp2040 flash
 
 pre-requisites are having rust/cargo
 ``` bash
-# required on linux (debian, ubuntu, fedora)
+# required deps on linux
 # fedora
 sudo dnf install -y libusbx-devel libftdi-devel libudev-devel
 # debian, ubuntu (untested)
@@ -59,23 +76,6 @@ https://github.com/probe-rs/probe-rs
 
 https://github.com/rp-rs/rp-hal
 
-
-
-
-```
-cargo build
-
-cargo build --release
-
-```
-
-you can also run and the built binaries will be transfered to the micro controller when in USB Mass Storage Device mode
-
-```
-cargo run
-
-cargo run --release
-```
 
 ## device setup
 
