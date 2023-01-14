@@ -1,0 +1,97 @@
+[package]
+authors = ["Adam Mills"]
+name = "pico_pad"
+version = "0.1.0"
+readme = "README.md"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# esentials
+cortex-m-rt = "0.7.1"
+cortex-m = "0.7.6"
+panic-halt = "0.2.0"
+rp2040-boot2 = "0.2.0"
+
+# hal
+rp2040-hal = { version = "0.6", features = ["rt"] }
+embedded-hal = "0.2.7"
+# required for clocks and delays
+embedded-time = "0.12.1"
+nb = "1.0.0"
+fugit = "0.3.6"
+
+# usb crates
+usb-device = "0.2.9"
+usbd-hid = "0.6.0"
+usbd-serial = "0.1.1"
+
+# spi interface for ssd1306
+ssd1306 = "0.7.0"
+tinybmp = "0.3.1"
+display-interface = "0.4.1"
+display-interface-spi = "0.4.1"
+embedded-graphics = "0.7.1"
+
+# led drivers
+pio = "0.2.0"
+ws2812-pio = { version = "0.4.0" }
+smart-leds = "0.3.0"
+
+# debug packages
+defmt = "0.3.0"
+defmt-rtt = "0.3.0"
+panic-probe = { version = "0.3.0", features = ["print-defmt"] }
+
+# cargo build/run
+[profile.dev]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 3
+overflow-checks = true
+
+# cargo build/run --release
+[profile.release]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
+overflow-checks = false
+
+# do not optimize proc-macro crates = faster builds from scratch
+[profile.dev.build-override]
+codegen-units = 8
+debug = false
+debug-assertions = false
+opt-level = 0
+overflow-checks = false
+
+[profile.release.build-override]
+codegen-units = 8
+debug = false
+debug-assertions = false
+opt-level = 0
+overflow-checks = false
+
+# cargo test
+[profile.test]
+codegen-units = 1
+debug = 2
+debug-assertions = true
+incremental = false
+opt-level = 3
+overflow-checks = true
+
+# cargo test --release
+[profile.bench]
+codegen-units = 1
+debug = 2
+debug-assertions = false
+incremental = false
+lto = 'fat'
+opt-level = 3
