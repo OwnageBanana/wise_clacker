@@ -1,27 +1,31 @@
-# pico pad
+# Wise (Cl|H)acker
 
-a simple macro pad with a rotary encoder, an SPI SSD1306 128 x 64 0.96"  OLED display, WS2812 LEDs and of course 12 keyboard keys.
+a simple 85 key split keyboard based on CY8C9540 io expanders with WS2812 LEDs.
 
 **this repo is a really big mess and still a work in progress**
 
-outside of a micro-python starter kit for embedded programming this is one of my first learning experiences with pcb design, embedded programming and rust programming, I've almost exclusively been learning rust for embedded. So this is my excuse for all the messy code and choices that don't really make sense in this project.
+outside of a micro-python starter kit for embedded programming this is one of my first learning experiences with pcb design, embedded programming and rust programming, I've almost exclusively been learning rust for embedded.
 
-## plans for the pad
+So this is my excuse for all the messy code and choices that don't really make sense in this project.
+
+I have [dev-logs](https://adammills.dev/projects/2) up on my website (may not always be available, its run off of my PI and my new ISP uses DHCP for non-commercial customers)
+
+
+
+## plans for the Keyboard
 
 - USB HID that has NKRO (currently a 6 key report)
-- USB media device reports
+- USB media device reports (Media key modifiers)
 - macro keys
   - modifiers + key
   - sequence of keys to type out
 - layers for different programs
-- rotary encoder with interrupts
 - LED patterns for layers, per key, runtime adjustable
 
 stretch goal:
 
-- simple UI for the screen
-- writing and reading to flash for configurations
-  - goal: to avoid building code to reconfigure, one could instead send config though serial usb or a menu on the device
+- writing and reading to flash/EEPROMs for keyboard configurations
+  - goal: to avoid compiling code to reconfigure, one could instead send config though serial usb or a menu on the device
 
 ## build steps
 
