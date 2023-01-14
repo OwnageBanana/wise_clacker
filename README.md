@@ -32,6 +32,36 @@ stretch goal:
 build with how you build!
 ... follow the [RP-Hal](https://github.com/rp-rs/rp-hal) documentation to get things up and running.
 
+## Additional steps for linux
+
+the RP-HAL repo leaves out some linux specific steps and dependencies. You'll need libusbx for using the thumbv6m-non-eabi, proberun and elf2uf2-rs to have cargo automatically transfer the built code to the rp2040 flash
+
+pre-requisites are having rust/cargo
+``` bash
+# required on linux (debian, ubuntu, fedora)
+# fedora
+sudo dnf install -y libusbx-devel libftdi-devel libudev-devel
+# debian, ubuntu (untested)
+sudo apt install libusbx-devel libftdi-devel libudev-devel
+
+rustup self update
+rustup update stable
+rustup target add thumbv6m-none-eabi
+
+# Useful to creating UF2 images for the RP2040 USB Bootloader
+cargo install elf2uf2-rs --locked
+# Useful for flashing over the SWD pins using a supported JTAG probe
+cargo install probe-run
+```
+
+
+https://github.com/probe-rs/probe-rs
+
+https://github.com/rp-rs/rp-hal
+
+
+
+
 ```
 cargo build
 
